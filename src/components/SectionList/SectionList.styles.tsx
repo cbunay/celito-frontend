@@ -1,7 +1,9 @@
-import { makeStyles } from '@fluentui/react-components';
+import { makeStyles, tokens } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
   sectionsContainer: {
-    backgroundColor: 'red',
+    display: 'grid',
+    gap: tokens.spacingVerticalM,
+    alignItems: 'start',
   },
 });

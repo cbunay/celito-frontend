@@ -1,10 +1,14 @@
+import DashedButton from '../DashedButton/DashedButton';
+import SectionInput from '../SectionInput/SectionInput';
 import { useStyles } from './SectionList.styles';
 
 export function SectionList() {
   const classes = useStyles();
   return (
     <div className={classes.sectionsContainer}>
-      <h1>SectionList!</h1>
+      <SectionInput />
+      <SectionInput />
+      <DashedButton>Add Section</DashedButton>
     </div>
   );
 }
