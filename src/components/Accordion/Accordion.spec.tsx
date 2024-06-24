@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import FormInput from './FormInput';
+import Accordion from './Accordion';
 
-describe('FormInput', () => {
+describe('Accordion', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<FormInput />);
+    const { baseElement } = render(<Accordion />);
     expect(baseElement).toBeTruthy();
   });
 });

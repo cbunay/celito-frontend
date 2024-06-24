@@ -2,19 +2,19 @@ import { Button, Combobox, Option } from '@fluentui/react-components';
 import { Add12Regular, ReOrder16Regular } from '@fluentui/react-icons';
 import { useState } from 'react';
 import InputMenu from '../InputMenu/InputMenu';
-import { useStyles } from './FormInput.styles';
+import { useStyles } from './Input.styles';
 
 interface InpupProps {
   width?: string;
 }
 
-export function FormInput({ width = '33%' }: InpupProps) {
+export function Input({ width = '33%' }: InpupProps) {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
 
   return (
     <div style={{ width }} className={classes.input}>
-      {edit && (
+      {edit ? (
         <>
           <ReOrder16Regular className={classes.reorderIcon} />
           <Combobox className={classes.dropdown} expandIcon={null}>
@@ -23,8 +23,7 @@ export function FormInput({ width = '33%' }: InpupProps) {
             <Option>Blue</Option>
           </Combobox>
         </>
-      )}
-      {!edit && (
+      ) : (
         <>
           <Add12Regular />
           <Button
@@ -41,4 +40,4 @@ export function FormInput({ width = '33%' }: InpupProps) {
   );
 }
 
-export default FormInput;
+export default Input;

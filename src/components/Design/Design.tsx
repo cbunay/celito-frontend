@@ -8,7 +8,7 @@ import {
 import { SearchRegular } from '@fluentui/react-icons';
 import { useStyles } from './Design.styles';
 import SectionList from '../SectionList/SectionList';
-import FormList from '../FormList/FormList';
+import Accordion from '../Accordion/Accordion';
 
 export function Design() {
   const classes = useStyles();
@@ -44,7 +44,7 @@ export function Design() {
       <Checkbox checked={true} label="Show Sections" />
       <div className={classes.sectionsLayout}>
         <SectionList />
-        <FormList />
+        <Accordion />
       </div>
     </div>
   );

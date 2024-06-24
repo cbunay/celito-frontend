@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import FormList from './FormList';
+import Dialog from './Dialog';
 
-describe('FormList', () => {
+describe('Dialog', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<FormList />);
+    const { baseElement } = render(<Dialog />);
     expect(baseElement).toBeTruthy();
   });
 });
