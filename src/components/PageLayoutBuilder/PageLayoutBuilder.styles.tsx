@@ -20,16 +20,16 @@ export const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingTop: '0.5rem',
   },
   dialogBody: {
+    gap: 0,
     backgroundColor: tokens.colorNeutralBackground1,
     borderRadius: tokens.borderRadiusLarge,
     height: '100vh',
   },
   dialogTitle: {
     fontSize: tokens.fontSizeBase400,
-    paddingBlock: tokens.spacingHorizontalS,
+    paddingBlock: tokens.spacingHorizontalXS,
     paddingInline: tokens.spacingVerticalL,
     borderTopLeftRadius: tokens.borderRadiusLarge,
     borderTopRightRadius: tokens.borderRadiusLarge,
@@ -37,6 +37,7 @@ export const useStyles = makeStyles({
   },
   dialogContent: {
     paddingInline: tokens.spacingHorizontalM,
+    paddingTop: 0,
   },
   dialogActions: {
     paddingBlock: tokens.spacingHorizontalL,
