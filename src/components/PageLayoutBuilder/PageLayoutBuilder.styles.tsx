@@ -29,7 +29,7 @@ export const useStyles = makeStyles({
   },
   dialogTitle: {
     fontSize: tokens.fontSizeBase400,
-    paddingBlock: tokens.spacingHorizontalXS,
+    paddingBlock: tokens.spacingHorizontalS,
     paddingInline: tokens.spacingVerticalL,
     borderTopLeftRadius: tokens.borderRadiusLarge,
     borderTopRightRadius: tokens.borderRadiusLarge,

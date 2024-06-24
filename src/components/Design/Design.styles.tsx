@@ -3,7 +3,7 @@ import { makeStyles, tokens } from '@fluentui/react-components';
 export const useStyles = makeStyles({
   container: {
     display: 'grid',
-    paddingBlock: tokens.spacingHorizontalL,
+    paddingBlock: tokens.spacingHorizontalM,
     gap: tokens.spacingVerticalM,
   },
   designRow: {
