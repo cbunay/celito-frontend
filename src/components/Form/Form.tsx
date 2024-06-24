@@ -8,10 +8,14 @@ import { useStyles } from './Form.styles';
 import { Add12Regular } from '@fluentui/react-icons';
 import FormInput from '../FormInput/FormInput';
 
-export function Form() {
+interface FormProps {
+  id: string;
+}
+
+export function Form({ id }: FormProps) {
   const classes = useStyles();
   return (
-    <AccordionItem value="1">
+    <AccordionItem value={id}>
       <AccordionHeader
         className={classes.accordionHeader}
         expandIconPosition="end"
@@ -22,10 +26,11 @@ export function Form() {
         <form className={classes.form}>
           <div className={classes.row}>
             <FormInput />
-            <FormInput />
-            <FormInput />
+            <Button className={classes.columnButton} icon={<Add12Regular />}>
+              Add Column
+            </Button>
           </div>
-          <Button className={classes.button} icon={<Add12Regular />}>
+          <Button className={classes.rowbutton} icon={<Add12Regular />}>
             Add Row
           </Button>
         </form>

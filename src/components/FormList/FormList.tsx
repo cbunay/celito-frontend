@@ -5,9 +5,14 @@ import { useStyles } from './FormList.styles';
 export function FormList() {
   const classes = useStyles();
   return (
-    <Accordion collapsible className={classes.formlist}>
-      <Form />
-      <Form />
+    <Accordion
+      defaultOpenItems={['1']}
+      collapsible
+      multiple
+      className={classes.formlist}
+    >
+      <Form id="1" />
+      <Form id="2" />
     </Accordion>
   );
 }

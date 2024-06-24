@@ -15,7 +15,22 @@ export const useStyles = makeStyles({
       fontWeight: tokens.fontWeightBold,
     },
   },
-  button: {
+  columnButton: {
+    minHeight: '1.9rem',
+    maxHeight: '1.9rem',
+    fontSize: '.75rem',
+    backgroundColor: tokens.colorNeutralBackground2,
+    border: 'none',
+    fontWeight: tokens.fontWeightRegular,
+    color: tokens.colorBrandForeground1,
+    '> span': {
+      margin: 0,
+    },
+    ':hover': {
+      color: tokens.colorBrandForeground2,
+    },
+  },
+  rowbutton: {
     backgroundColor: tokens.colorNeutralBackground2,
     border: 'none',
     width: '100%',
@@ -29,8 +44,7 @@ export const useStyles = makeStyles({
     },
   },
   row: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
+    display: 'flex',
     gap: tokens.spacingHorizontalM,
   },
 });

@@ -22,7 +22,7 @@ export const useStyles = makeStyles({
     minHeight: '1.9rem',
     maxHeight: '1.9rem',
     paddingLeft: tokens.spacingHorizontalXS,
-    fontSize: '.8rem',
+    fontSize: '.75rem',
     justifyContent: 'left',
     borderRadius: tokens.borderRadiusLarge,
     color: tokens.colorBrandForeground2,

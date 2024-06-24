@@ -1,18 +1,19 @@
 import { Button, Combobox, Option } from '@fluentui/react-components';
-import {
-  Add12Regular,
-  MoreHorizontal16Filled,
-  ReOrder16Regular,
-} from '@fluentui/react-icons';
+import { Add12Regular, ReOrder16Regular } from '@fluentui/react-icons';
 import { useState } from 'react';
+import InputMenu from '../InputMenu/InputMenu';
 import { useStyles } from './FormInput.styles';
 
-export function Inputs() {
+interface InpupProps {
+  width?: string;
+}
+
+export function FormInput({ width = '33%' }: InpupProps) {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
 
   return (
-    <div className={classes.input}>
+    <div style={{ width }} className={classes.input}>
       {edit && (
         <>
           <ReOrder16Regular className={classes.reorderIcon} />
@@ -35,9 +36,9 @@ export function Inputs() {
           </Button>
         </>
       )}
-      <MoreHorizontal16Filled />
+      <InputMenu />
     </div>
   );
 }
 
-export default Inputs;
+export default FormInput;
