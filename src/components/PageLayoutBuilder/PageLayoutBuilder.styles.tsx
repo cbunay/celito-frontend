@@ -28,6 +28,7 @@ export const useStyles = makeStyles({
     height: '100vh',
   },
   dialogTitle: {
+    fontSize: tokens.fontSizeBase400,
     paddingBlock: tokens.spacingHorizontalS,
     paddingInline: tokens.spacingVerticalL,
     borderTopLeftRadius: tokens.borderRadiusLarge,

@@ -1,6 +1,7 @@
-import DashedButton from '../DashedButton/DashedButton';
+import { Button } from '@fluentui/react-components';
 import SectionInput from '../SectionInput/SectionInput';
 import { useStyles } from './SectionList.styles';
+import { Add12Regular } from '@fluentui/react-icons';
 
 export function SectionList() {
   const classes = useStyles();
@@ -8,7 +9,9 @@ export function SectionList() {
     <div className={classes.sectionsContainer}>
       <SectionInput />
       <SectionInput />
-      <DashedButton>Add Section</DashedButton>
+      <Button className={classes.button} icon={<Add12Regular />}>
+        Add section
+      </Button>
     </div>
   );
 }
