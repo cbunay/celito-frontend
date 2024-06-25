@@ -23,13 +23,9 @@ export const useStyles = makeStyles({
   sectionsLayout: {
     display: 'grid',
     gridTemplateColumns: '1fr 3fr',
-    gap: tokens.spacingVerticalM,
-  },
-  sectionsContainer: {
-    backgroundColor: 'red',
-  },
-
-  formsContainer: {
-    backgroundColor: 'red',
+    gap: tokens.spacingHorizontalM,
+    '> :only-child': {
+      gridColumn: 'span 2',
+    },
   },
 });

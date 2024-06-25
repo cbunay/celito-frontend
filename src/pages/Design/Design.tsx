@@ -14,11 +14,13 @@ import SectionList from '../../components/SectionList/SectionList';
 import { selectLayout } from '../../slices/layout.selectors';
 import { useStyles } from './Design.styles';
 import { useLayoutForm } from './useLayoutForm';
+import { useState } from 'react';
 
 export function Design() {
   const classes = useStyles();
   const layout = useAppSelector(selectLayout);
   const { control, submit, errors } = useLayoutForm();
+  const [checked, setChecked] = useState(false);
   const { label, viewType } = layout;
 
   return (
@@ -76,9 +78,13 @@ export function Design() {
           />
         </Field>
       </div>
-      <Checkbox label="Show Sections" />
+      <Checkbox
+        checked={checked}
+        onChange={() => setChecked((c) => !c)}
+        label="Show Sections"
+      />
       <div className={classes.sectionsLayout}>
-        <SectionList />
+        {checked && <SectionList />}
         <Accordion />
       </div>
     </form>
