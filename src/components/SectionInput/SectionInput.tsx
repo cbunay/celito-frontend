@@ -1,14 +1,32 @@
 import { Input } from '@fluentui/react-components';
 import { Delete16Regular } from '@fluentui/react-icons';
 import { useStyles } from './SectionInput.Styles';
+import { Controller, Control } from 'react-hook-form';
 
-export function SectionInput() {
+interface SectionInputProps {
+  name: string;
+  onDelete: () => void;
+  control: Control;
+}
+
+export function SectionInput({ name, onDelete, control }: SectionInputProps) {
   const classes = useStyles();
   return (
-    <Input
-      className={classes.input}
-      color="red"
-      contentAfter={<Delete16Regular className={classes.icon} />}
+    <Controller
+      name={name}
+      control={control}
+      render={({ field: { onChange, value } }) => (
+        <Input
+          value={value}
+          className={classes.input}
+          onChange={(_, data) => {
+            onChange(data.value);
+          }}
+          contentAfter={
+            <Delete16Regular onClick={onDelete} className={classes.icon} />
+          }
+        />
+      )}
     />
   );
 }

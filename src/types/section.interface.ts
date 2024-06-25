@@ -1,7 +1,8 @@
 import { Input } from "./input.interface";
 
 export interface Section {
-  id: string,
+  // id: string,
   label: string;
-  inputs: Input[];
+  // inputs: Input[];
+  
 }

@@ -13,14 +13,14 @@ import Accordion from '../../components/Accordion/Accordion';
 import SectionList from '../../components/SectionList/SectionList';
 import { selectLayout } from '../../slices/layout.selectors';
 import { useStyles } from './Design.styles';
-import { useLayoutForm } from './useLayoutForm';
+import { useLayoutForm } from '../../hooks/useLayoutForm';
 import { useState } from 'react';
 
 export function Design() {
   const classes = useStyles();
   const layout = useAppSelector(selectLayout);
   const { control, submit, errors } = useLayoutForm();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const { label, viewType } = layout;
 
   return (

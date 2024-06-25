@@ -4,5 +4,5 @@ export interface Layout {
   // id: string;
   label: string;
   viewType: string;
-  // sections: Section[];
+  sections: Section[];
 }

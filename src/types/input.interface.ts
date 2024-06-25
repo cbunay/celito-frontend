@@ -8,7 +8,7 @@ export enum InputSize {
 }
 
 export interface Input {
-  id: string,
+  // id: string,
   label: string,
   name: string,
   size: InputSize
