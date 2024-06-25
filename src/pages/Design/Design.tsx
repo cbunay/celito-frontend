@@ -1,4 +1,10 @@
-import { Combobox, Field, Input, Option } from '@fluentui/react-components';
+import {
+  Checkbox,
+  Combobox,
+  Field,
+  Input,
+  Option,
+} from '@fluentui/react-components';
 import { SearchRegular } from '@fluentui/react-icons';
 import { Controller } from 'react-hook-form';
 
@@ -70,7 +76,7 @@ export function Design() {
           />
         </Field>
       </div>
-      {/* <Checkbox checked={true} label="Show Sections" /> */}
+      <Checkbox label="Show Sections" />
       <div className={classes.sectionsLayout}>
         <SectionList />
         <Accordion />

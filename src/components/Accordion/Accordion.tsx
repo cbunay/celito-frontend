@@ -1,6 +1,7 @@
 import { Accordion } from '@fluentui/react-components';
+
 import AccordionItem from '../AccordionItem/AccordionItem';
-import Form from '../Form/Form';
+import Section from '../Section/Section';
 import { useStyles } from './Accordion.styles';
 
 export function CustomAccordion() {
@@ -13,10 +14,10 @@ export function CustomAccordion() {
       className={classes.formlist}
     >
       <AccordionItem value="1" label="new section">
-        <Form />
+        <Section />
       </AccordionItem>
       <AccordionItem value="2" label="new section">
-        <Form />
+        <Section />
       </AccordionItem>
     </Accordion>
   );

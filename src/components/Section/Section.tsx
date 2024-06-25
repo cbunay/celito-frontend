@@ -1,9 +1,9 @@
 import { Button } from '@fluentui/react-components';
 import { Add12Regular } from '@fluentui/react-icons';
 import Input from '../Input/Input';
-import { useStyles } from './Form.styles';
+import { useStyles } from './Section.styles';
 
-export function Form() {
+export function Section() {
   const classes = useStyles();
   return (
     <div className={classes.form}>
@@ -20,4 +20,4 @@ export function Form() {
   );
 }
 
-export default Form;
+export default Section;

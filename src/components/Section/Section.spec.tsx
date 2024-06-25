@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Form from './Form';
+import Section from './Section';
 
-describe('Form', () => {
+describe('Section', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Form />);
+    const { baseElement } = render(<Section />);
     expect(baseElement).toBeTruthy();
   });
 });
