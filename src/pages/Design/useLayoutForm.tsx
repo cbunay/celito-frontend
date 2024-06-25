@@ -25,7 +25,7 @@ export function useLayoutForm() {
 
   const onSubmit = (data: Layout) => {
     dispatch(updateLabel(data.label));
-    dispatch(updateViewType(data.viewType));
+    // dispatch(updateViewType(data.viewType));
   };
 
   return { control, register, submit: handleSubmit(onSubmit), errors };
