@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Checkbox,
   Combobox,
@@ -8,22 +9,21 @@ import {
 import { SearchRegular } from '@fluentui/react-icons';
 import { Controller, FormProvider } from 'react-hook-form';
 
-import { useState } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import Accordion from '../../components/Accordion/Accordion';
 import SectionList from '../../components/SectionList/SectionList';
-import { useLayoutForm } from '../../hooks/useLayoutForm';
+import { Layout, useLayoutForm } from '../../hooks/useLayoutForm';
 import { selectLayout } from '../../slices/layout.selectors';
 import { useStyles } from './Design.styles';
 
 export function Design() {
   const classes = useStyles();
   const layout = useAppSelector(selectLayout);
-  const { control, errors, methods } = useLayoutForm();
+  const { control, errors, methods, append, remove, fields } = useLayoutForm();
   const [checked, setChecked] = useState(true);
   const { label, viewType } = layout;
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: Layout) => console.log(data);
 
   return (
     <FormProvider {...methods}>
@@ -87,7 +87,9 @@ export function Design() {
           label="Show Sections"
         />
         <div className={classes.sectionsLayout}>
-          {checked && <SectionList />}
+          {checked && (
+            <SectionList fields={fields} append={append} remove={remove} />
+          )}
           <Accordion />
         </div>
       </form>

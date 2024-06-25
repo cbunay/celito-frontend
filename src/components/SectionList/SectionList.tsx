@@ -1,12 +1,23 @@
 import { Button } from '@fluentui/react-components';
+import { Add12Regular } from '@fluentui/react-icons';
+import {
+  FieldArrayWithId,
+  UseFieldArrayAppend,
+  UseFieldArrayRemove,
+} from 'react-hook-form';
+import { Layout, Section } from '../../hooks/useLayoutForm';
 import SectionInput from '../SectionInput/SectionInput';
 import { useStyles } from './SectionList.styles';
-import { Add12Regular } from '@fluentui/react-icons';
-import { useLayoutForm } from '../../hooks/useLayoutForm';
 
-export function SectionList() {
+interface SectionListProps {
+  fields: FieldArrayWithId<Section>[];
+  append: UseFieldArrayAppend<Layout, 'sections'>;
+  remove: UseFieldArrayRemove;
+}
+
+export function SectionList({ append, remove, fields }: SectionListProps) {
   const classes = useStyles();
-  const { fields, append, remove } = useLayoutForm();
+
   return (
     <div className={classes.sectionsContainer}>
       {fields.map((section, index) => (

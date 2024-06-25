@@ -19,12 +19,13 @@ export function SectionInput({ index, onDelete }: SectionInputProps) {
       name={`sections.${index}.label` as const}
       render={({ field: { onChange, value } }) => (
         <div>
-          <button onClick={onDelete}>delete</button>
           <Input
             value={value}
             onChange={onChange}
             className={classes.input}
-            // contentAfter={<button onClick={onDelete}>delete</button>}
+            contentAfter={
+              <Delete16Regular onClick={onDelete} className={classes.icon} />
+            }
           />
         </div>
       )}
