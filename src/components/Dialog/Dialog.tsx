@@ -1,31 +1,30 @@
-import { ReactNode, useState } from 'react';
+import { Children, ReactNode, useState } from 'react';
 
 import {
   Button,
-  Dialog,
-  DialogActions,
+  Dialog as CustomDialog,
+  DialogActions as Actions,
   DialogBody,
-  DialogContent,
+  DialogContent as Content,
   DialogSurface,
-  DialogTitle,
+  DialogTitle as Title,
   DialogTrigger,
 } from '@fluentui/react-components';
 
 import { AddFilled } from '@fluentui/react-icons';
 import { useStyles } from './Dialog.styles';
-import { title } from 'process';
 
 interface DialogProps {
   children: ReactNode;
   trigger: ReactNode;
 }
 
-export function CustomDialog({ children, trigger }: DialogProps) {
+export function Dialog({ children, trigger }: DialogProps) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
   return (
-    <Dialog open={open} onOpenChange={(e, data) => setOpen(data.open)}>
+    <CustomDialog open={open} onOpenChange={(e, data) => setOpen(data.open)}>
       <DialogTrigger disableButtonEnhancement>
         <span>{trigger}</span>
       </DialogTrigger>
@@ -38,23 +37,38 @@ export function CustomDialog({ children, trigger }: DialogProps) {
             <Button icon={<AddFilled className={classes.closeIcon} />} />
           </div>
         </DialogTrigger>
-        <DialogBody className={classes.dialogBody}>
-          <DialogTitle className={classes.dialogTitle}>{title}</DialogTitle>
-          <DialogContent className={classes.dialogContent}>
-            {children}
-          </DialogContent>
-          <DialogActions className={classes.dialogActions} fluid>
-            <DialogTrigger>
-              <Button appearance="subtle" className={classes.cancelButton}>
-                Cancel Request
-              </Button>
-            </DialogTrigger>
-            <Button appearance="primary">Save Design</Button>
-          </DialogActions>
-        </DialogBody>
+        <DialogBody className={classes.dialogBody}>{children}</DialogBody>
       </DialogSurface>
-    </Dialog>
+    </CustomDialog>
   );
 }
 
-export default CustomDialog;
+interface DialogTitleProps {
+  children: ReactNode;
+}
+
+export const DialogTitle = ({ children }: DialogTitleProps) => {
+  const classes = useStyles();
+  return <Title className={classes.dialogTitle}>{children}</Title>;
+};
+interface DialogActionsProps {
+  children: ReactNode;
+}
+
+interface DialogContentProps {
+  children: ReactNode;
+}
+
+export const DialogContent = ({ children }: DialogContentProps) => {
+  const classes = useStyles();
+  return <Content className={classes.dialogContent}>{children}</Content>;
+};
+
+export const DialogActions = ({ children }: DialogActionsProps) => {
+  const classes = useStyles();
+  return (
+    <Actions className={classes.dialogActions} fluid>
+      {children}
+    </Actions>
+  );
+};

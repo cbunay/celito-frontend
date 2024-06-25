@@ -7,8 +7,8 @@ import {
 } from '@fluentui/react-components';
 import { SearchRegular } from '@fluentui/react-icons';
 import { useStyles } from './Design.styles';
-import SectionList from '../SectionList/SectionList';
-import Accordion from '../Accordion/Accordion';
+import SectionList from '../../components/SectionList/SectionList';
+import Accordion from '../../components/Accordion/Accordion';
 
 export function Design() {
   const classes = useStyles();
