@@ -1,14 +1,17 @@
 import {
   PayloadAction,
   createSlice,
+  nanoid,
 } from '@reduxjs/toolkit';
 import { Layout } from '../types/layout.interface';
+import { Section } from '../types/section.interface';
 
 export const LAYOUT_SLICE = 'layout';
 
 export const initialStoreState: Layout = {
   label: '',
   viewType: '',
+  sections: [],
 };
 
 export const layoutSlice = createSlice({
@@ -20,6 +23,13 @@ export const layoutSlice = createSlice({
     },
     updateViewType: (state, action: PayloadAction<string>) => {
       state.viewType = action.payload
+    },
+    updateSections: (state, action: PayloadAction<string[]>) => {
+      const sections: Section[] = action.payload.map(s => ({
+        id: nanoid(),
+        label: s
+      }))
+      state.sections = sections
     },
   }
 });

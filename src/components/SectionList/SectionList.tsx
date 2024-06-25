@@ -6,15 +6,14 @@ import { useLayoutForm } from '../../hooks/useLayoutForm';
 
 export function SectionList() {
   const classes = useStyles();
-  const { control, fields, append, remove } = useLayoutForm();
+  const { fields, append, remove } = useLayoutForm();
   return (
     <div className={classes.sectionsContainer}>
-      {fields.map((section, sectionIndex) => (
+      {fields.map((section, index) => (
         <SectionInput
           key={section.id}
-          onDelete={() => remove(sectionIndex)}
-          control={control}
-          name={`sections[${sectionIndex}].label`}
+          onDelete={() => remove(index)}
+          index={index}
         />
       ))}
       <Button
@@ -22,7 +21,7 @@ export function SectionList() {
         icon={<Add12Regular />}
         onClick={() => append({ label: '' })}
       >
-        Add section
+        Add sections
       </Button>
     </div>
   );
