@@ -9,11 +9,16 @@ import { SearchRegular } from '@fluentui/react-icons';
 import { useStyles } from './Design.styles';
 import SectionList from '../../components/SectionList/SectionList';
 import Accordion from '../../components/Accordion/Accordion';
+import { useAppSelector } from '../../app/hooks';
+import { selectLayout } from '../../slices/layout.selectors.';
 
 export function Design() {
   const classes = useStyles();
+  const layout = useAppSelector(selectLayout);
+  console.log(layout.label);
+
   return (
-    <div className={classes.container}>
+    <form className={classes.container}>
       <div className={classes.designRow}>
         <Field
           required
@@ -46,7 +51,7 @@ export function Design() {
         <SectionList />
         <Accordion />
       </div>
-    </div>
+    </form>
   );
 }
 
