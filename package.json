@@ -11,8 +11,10 @@
   "dependencies": {
     "@fluentui/react-components": "^9.54.2",
     "@fluentui/react-icons": "^2.0.245",
+    "@reduxjs/toolkit": "1.9.3",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-redux": "8.0.5"
   },
   "devDependencies": {
     "@nx/eslint": "19.3.1",
@@ -30,6 +32,7 @@
     "@types/node": "18.16.9",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
+    "@types/react-redux": "^7.1.33",
     "@typescript-eslint/eslint-plugin": "^7.3.0",
     "@typescript-eslint/parser": "^7.3.0",
     "@vitejs/plugin-react": "^4.2.0",
