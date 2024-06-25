@@ -31,11 +31,7 @@ export function PageLayoutBuilder() {
     <Dialog trigger={<Button>Open Builder</Button>}>
       <DialogTitle>Page Layout Builder</DialogTitle>
       <DialogContent>
-        <TabList
-          defaultSelectedValue="design"
-          selectedValue={selectedTab}
-          onTabSelect={onTabSelect}
-        >
+        <TabList selectedValue={selectedTab} onTabSelect={onTabSelect}>
           <Tab value="design">Design</Tab>
           <Tab value="related-objects">Related Objects</Tab>
         </TabList>
@@ -49,7 +45,9 @@ export function PageLayoutBuilder() {
             Cancel Request
           </Button>
         </DialogTrigger>
-        <Button appearance="primary">Save Design</Button>
+        <Button form="form-layout" type="submit" appearance="primary">
+          Save Design
+        </Button>
       </DialogActions>
     </Dialog>
   );
