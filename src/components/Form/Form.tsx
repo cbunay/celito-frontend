@@ -6,7 +6,7 @@ import { useStyles } from './Form.styles';
 export function Form() {
   const classes = useStyles();
   return (
-    <form className={classes.form}>
+    <div className={classes.form}>
       <div className={classes.row}>
         <Input />
         <Button className={classes.columnButton} icon={<Add12Regular />}>
@@ -16,7 +16,7 @@ export function Form() {
       <Button className={classes.rowbutton} icon={<Add12Regular />}>
         Add Row
       </Button>
-    </form>
+    </div>
   );
 }
 
