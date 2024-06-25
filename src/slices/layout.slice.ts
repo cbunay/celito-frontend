@@ -2,30 +2,29 @@ import {
   PayloadAction,
   createSlice,
 } from '@reduxjs/toolkit';
+import { Layout } from '../types/layout.interface';
 
 export const LAYOUT_SLICE = 'layout';
 
-interface LayoutState {
-  label: string;
-  forms: string | null;
-}
-
-export const initialStoreState: LayoutState = {
-  label: 'not loaded',
-  forms: null,
+export const initialStoreState: Layout = {
+  label: '',
+  viewType: '',
 };
 
 export const layoutSlice = createSlice({
   name: LAYOUT_SLICE,
   initialState: initialStoreState,
   reducers: {
-    updateLayout: (state, action: PayloadAction<string>) => {
+    updateLabel: (state, action: PayloadAction<string>) => {
       state.label = action.payload
+    },
+    updateViewType: (state, action: PayloadAction<string>) => {
+      state.viewType = action.payload
     },
   }
 });
 
-export const { actions: layoutActions } = layoutSlice
+export const { updateLabel, updateViewType } = layoutSlice.actions
 export const { reducer: layoutReducer } = layoutSlice
 
 
