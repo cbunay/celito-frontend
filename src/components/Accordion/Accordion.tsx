@@ -1,26 +1,33 @@
-import { Accordion } from '@fluentui/react-components';
+import { Accordion as CustomAccordion } from '@fluentui/react-components';
 
+import { useFormContext } from 'react-hook-form';
+import { Layout } from '../../hooks/useLayoutForm';
 import AccordionItem from '../AccordionItem/AccordionItem';
 import Section from '../Section/Section';
 import { useStyles } from './Accordion.styles';
 
-export function CustomAccordion() {
+export function Accordion() {
+  const { getValues } = useFormContext<Layout>();
+  const { sections } = getValues();
   const classes = useStyles();
   return (
-    <Accordion
-      defaultOpenItems={['1']}
+    <CustomAccordion
+      defaultOpenItems={`section-0`}
       collapsible
       multiple
       className={classes.formlist}
     >
-      <AccordionItem value="1" label="new section">
-        <Section />
-      </AccordionItem>
-      <AccordionItem value="2" label="new section">
-        <Section />
-      </AccordionItem>
-    </Accordion>
+      {sections.map((section, index) => (
+        <AccordionItem
+          key={`${index}-${section}`}
+          value={`section-${index}`}
+          sectionName={`section.${index}.label` as const}
+        >
+          <Section />
+        </AccordionItem>
+      ))}
+    </CustomAccordion>
   );
 }
 
-export default CustomAccordion;
+export default Accordion;

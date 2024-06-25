@@ -15,7 +15,6 @@ const layoutSchema = yup.object({
   sections: yup.array().of(sectionSchema).default([]),
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export type Layout = yup.InferType<typeof layoutSchema>;
 export type Section = yup.InferType<typeof sectionSchema>;
 
@@ -27,7 +26,11 @@ export function useLayoutForm() {
     defaultValues: {
       label: '',
       viewType: '',
-      sections: [],
+      sections: [
+        {
+          label: '',
+        },
+      ],
     },
   });
 

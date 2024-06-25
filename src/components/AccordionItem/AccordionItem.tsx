@@ -1,11 +1,13 @@
 import {
   AccordionHeader,
-  AccordionItem,
+  AccordionItem as CustomAccordion,
   AccordionPanel,
   makeStyles,
   tokens,
 } from '@fluentui/react-components';
 import { ReactNode } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { Layout } from '../../hooks/useLayoutForm';
 
 const useStyles = makeStyles({
   accordionHeader: {
@@ -16,31 +18,42 @@ const useStyles = makeStyles({
       fontWeight: tokens.fontWeightBold,
     },
   },
+  dimmedText: {
+    fontWeight: tokens.fontWeightRegular,
+    color: tokens.colorNeutralForegroundDisabled,
+  },
 });
 
 interface CustomAccordionItemProps {
   value: string;
-  label: string;
   children: ReactNode;
+  sectionName: string;
 }
 
-const CustomAccordionItem = ({
+const Accordion = ({
   value,
-  label,
   children,
+  sectionName,
 }: CustomAccordionItemProps) => {
   const classes = useStyles();
+  const { watch } = useFormContext();
+  const label = watch(sectionName, '');
+
   return (
-    <AccordionItem value={value}>
+    <CustomAccordion value={value}>
       <AccordionHeader
         className={classes.accordionHeader}
         expandIconPosition="end"
       >
-        {label}
+        {label === '' ? (
+          <span className={classes.dimmedText}>Section Name</span>
+        ) : (
+          label
+        )}
       </AccordionHeader>
       <AccordionPanel>{children}</AccordionPanel>
-    </AccordionItem>
+    </CustomAccordion>
   );
 };
 
-export default CustomAccordionItem;
+export default Accordion;

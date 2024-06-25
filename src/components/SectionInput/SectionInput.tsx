@@ -16,7 +16,7 @@ export function SectionInput({ index, onDelete }: SectionInputProps) {
     <Controller
       control={control}
       defaultValue={''}
-      name={`sections.${index}.label` as const}
+      name={`section.${index}.label` as const}
       render={({ field: { onChange, value } }) => (
         <div>
           <Input
