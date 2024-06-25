@@ -21,7 +21,7 @@ export function Accordion() {
         <AccordionItem
           key={`${index}-${section}`}
           value={`section-${index}`}
-          sectionName={`section.${index}.label` as const}
+          sectionName={`sections.${index}.label` as const}
         >
           <Section />
         </AccordionItem>
