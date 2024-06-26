@@ -14,15 +14,15 @@ export function SectionInput({ index, onDelete }: SectionInputProps) {
   const { control, register, setValue } = useFormContext();
 
   useEffect(() => {
-    setValue(`sections.${index}.name`, `sections.${index}.name`);
+    setValue(`sections.${index}.id`, `sections.${index}.id`);
   }, [index, setValue]);
 
   return (
     <div>
       <input
-        value={`sections.${index}.name`}
+        value={`sections.${index}.id`}
         type="hidden"
-        {...register(`sections.${index}.name`)}
+        {...register(`sections.${index}.id`)}
       />
       <Controller
         control={control}

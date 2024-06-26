@@ -5,9 +5,21 @@ import * as yup from 'yup';
 import { useAppDispatch } from '../app/hooks';
 import { updateLabel, updateViewType } from '../slices/layout.slice';
 
-const sectionSchema = yup.object({
+const inputSchema = yup.object({
   label: yup.string().required('Input is required'),
-  name: yup.string().nonNullable(),
+  size: yup.string().nonNullable(),
+  row: yup.string().nonNullable(),
+});
+
+const rowSchema = yup.object({
+  position: yup.number().nonNullable(),
+  inputs: yup.array().of(inputSchema).default([]),
+});
+
+const sectionSchema = yup.object({
+  id: yup.string().nonNullable(),
+  label: yup.string().required('Input is required'),
+  rows: yup.array().of(rowSchema).default([]),
 });
 
 const layoutSchema = yup.object({
@@ -18,6 +30,8 @@ const layoutSchema = yup.object({
 
 export type Layout = yup.InferType<typeof layoutSchema>;
 export type Section = yup.InferType<typeof sectionSchema>;
+export type Row = yup.InferType<typeof rowSchema>;
+export type Input = yup.InferType<typeof inputSchema>;
 
 export function useLayoutForm() {
   const dispatch = useAppDispatch();
@@ -30,7 +44,8 @@ export function useLayoutForm() {
       sections: [
         {
           label: '',
-          name: '',
+          id: '',
+          rows: [],
         },
       ],
     },

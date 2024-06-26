@@ -12,15 +12,15 @@ export function Accordion() {
   const classes = useStyles();
   return (
     <CustomAccordion
-      defaultOpenItems={`section-0`}
+      defaultOpenItems={[`accordion.0`]}
       collapsible
       multiple
       className={classes.formlist}
     >
       {sections.map((section, index) => (
         <AccordionItem
-          key={`accordioin.${index}`}
-          value={`accordioin.${index}`}
+          key={`accordion.${index}`}
+          value={`accordion.${index}`}
           sectionName={`sections.${index}.label` as const}
         >
           <Section />
