@@ -1,6 +1,6 @@
 export enum Size {
-  small = 30,
-  medium = 47,
-  large = 60,
-  xlarge = 97,
+  small = 32,
+  medium = 48,
+  large = 66,
+  xlarge = 100,
 }

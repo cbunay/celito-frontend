@@ -2,6 +2,7 @@ import { makeStyles, tokens } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
   input: {
+    boxSizing: 'border-box',
     paddingInline: tokens.spacingHorizontalS,
     overflow: 'hidden',
     minHeight: '1.9rem',
