@@ -30,9 +30,9 @@ export function SectionList({ append, remove, fields }: SectionListProps) {
       <Button
         className={classes.button}
         icon={<Add12Regular />}
-        onClick={() => append({ label: '' })}
+        onClick={() => append({ id: '', label: '', rows: [] })}
       >
-        Add sections
+        Add Section
       </Button>
     </div>
   );

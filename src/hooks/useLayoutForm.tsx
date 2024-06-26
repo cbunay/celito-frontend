@@ -17,7 +17,7 @@ const rowSchema = yup.object({
 });
 
 const sectionSchema = yup.object({
-  id: yup.string().nonNullable(),
+  id: yup.string().required(),
   label: yup.string().required('Input is required'),
   rows: yup.array().of(rowSchema).default([]),
 });
@@ -42,11 +42,11 @@ export function useLayoutForm() {
       label: '',
       viewType: '',
       sections: [
-        {
-          label: '',
-          id: '',
-          rows: [],
-        },
+        // {
+        //   id: '',
+        //   label: '',
+        //   rows: [],
+        // },
       ],
     },
   });
