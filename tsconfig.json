@@ -20,7 +20,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client", "vitest"],
-    "strictNullChecks": true,
+    "strictNullChecks": true
   },
   "files": [],
   "include": [],

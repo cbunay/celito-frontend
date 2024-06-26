@@ -1,25 +1,16 @@
 import { makeStyles, tokens } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
-  form: {
+  row: {
     display: 'flex',
-    flexDirection: 'column',
-    marginBlock: tokens.spacingVerticalL,
-    gap: tokens.spacingVerticalL,
+    gap: tokens.spacingHorizontalM,
   },
-  accordionHeader: {
-    backgroundColor: tokens.colorNeutralBackground3,
-    '> button': {
-      lineHeight: '3.5rem',
-      borderRadius: tokens.borderRadiusXLarge,
-      fontWeight: tokens.fontWeightBold,
-    },
-  },
-
-  rowbutton: {
+  columnButton: {
+    minHeight: '1.9rem',
+    maxHeight: '1.9rem',
+    fontSize: '.75rem',
     backgroundColor: tokens.colorNeutralBackground2,
     border: 'none',
-    width: '100%',
     fontWeight: tokens.fontWeightRegular,
     color: tokens.colorBrandForeground1,
     '> span': {

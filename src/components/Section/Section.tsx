@@ -1,35 +1,59 @@
 import { Button } from '@fluentui/react-components';
 import { Add12Regular } from '@fluentui/react-icons';
-import { Row } from '../../hooks/useLayoutForm';
+import { Layout, Row } from '../../hooks/useLayoutForm';
 import { useStyles } from './Section.styles';
 import Input from '../Input/Input';
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import InputsRow from '../Row/Row';
 
-interface SectionProps {
-  rows: Row[];
+enum size {
+  small = '33%',
+  medium = '50%',
+  large = '66%',
+  xlarge = '100%',
 }
 
-export function Section({ rows }: SectionProps) {
+interface SectionProps {
+  index: number;
+}
+
+export function Section({ index }: SectionProps) {
   const classes = useStyles();
-  console.log(rows);
+  const { control } = useFormContext<Layout>();
+  const { fields, append } = useFieldArray({
+    control,
+    name: `sections.${index}.rows`,
+  });
+
+  const inputs = [
+    {
+      label: '',
+      size: size.small.toString(),
+    },
+    {
+      label: '',
+      size: size.small.toString(),
+    },
+    {
+      label: '',
+      size: size.small.toString(),
+    },
+  ];
 
   return (
     <div className={classes.form}>
-      {/* <div className={classes.row}>
-        <Input width="33%" />
-        <Button className={classes.columnButton} icon={<Add12Regular />}>
-          Add Column
-        </Button>
-      </div> */}
-
-      {rows.map((row) => (
-        <div className={classes.row}>
-          <Input width="33%" />
-          <Button className={classes.columnButton} icon={<Add12Regular />}>
-            Add Column
-          </Button>
-        </div>
+      {fields.map((row, index) => (
+        <InputsRow key={row.id} />
       ))}
-      <Button className={classes.rowbutton} icon={<Add12Regular />}>
+      <Button
+        className={classes.rowbutton}
+        icon={<Add12Regular />}
+        onClick={() => {
+          append({
+            inputs,
+          });
+        }}
+      >
         Add Row
       </Button>
     </div>

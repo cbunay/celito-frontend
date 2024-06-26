@@ -8,11 +8,9 @@ import { updateLabel, updateViewType } from '../slices/layout.slice';
 const inputSchema = yup.object({
   label: yup.string().required('Input is required'),
   size: yup.string().nonNullable(),
-  row: yup.string().nonNullable(),
 });
 
 const rowSchema = yup.object({
-  position: yup.number().nonNullable(),
   inputs: yup.array().of(inputSchema).default([]),
 });
 
