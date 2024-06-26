@@ -7,6 +7,7 @@ import { updateLabel, updateViewType } from '../slices/layout.slice';
 
 const sectionSchema = yup.object({
   label: yup.string().required('Input is required'),
+  name: yup.string().nonNullable(),
 });
 
 const layoutSchema = yup.object({
@@ -29,6 +30,7 @@ export function useLayoutForm() {
       sections: [
         {
           label: '',
+          name: '',
         },
       ],
     },

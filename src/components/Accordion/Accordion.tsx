@@ -19,8 +19,8 @@ export function Accordion() {
     >
       {sections.map((section, index) => (
         <AccordionItem
-          key={`${index}-${section}`}
-          value={`section-${index}`}
+          key={`accordioin.${index}`}
+          value={`accordioin.${index}`}
           sectionName={`sections.${index}.label` as const}
         >
           <Section />
