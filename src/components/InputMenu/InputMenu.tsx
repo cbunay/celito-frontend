@@ -43,7 +43,11 @@ const FieldWidthSubMenu = () => {
   );
 };
 
-export function InputMenu() {
+interface InputMenuProps {
+  onRemove: () => void;
+}
+
+export function InputMenu({ onRemove }: InputMenuProps) {
   const classes = useStyles();
   return (
     <Menu hasIcons>
@@ -62,7 +66,10 @@ export function InputMenu() {
           <MenuItem icon={<DataUsageEditRegular className={classes.icon} />}>
             Edit Field{' '}
           </MenuItem>
-          <MenuItem icon={<DeleteRegular className={classes.deleteIcon} />}>
+          <MenuItem
+            onClick={onRemove}
+            icon={<DeleteRegular className={classes.deleteIcon} />}
+          >
             Delete
           </MenuItem>
         </MenuList>

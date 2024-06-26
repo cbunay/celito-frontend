@@ -3,17 +3,23 @@ import { Add12Regular, ReOrder16Regular } from '@fluentui/react-icons';
 import { useState } from 'react';
 import InputMenu from '../InputMenu/InputMenu';
 import { useStyles } from './Input.styles';
+import { Size } from '../../constans/size';
 
 interface InpupProps {
-  width?: string;
+  width: number;
+  onRemove: () => void;
 }
 
-export function Input({ width = '33%' }: InpupProps) {
+export function Input({ width = Size.small, onRemove }: InpupProps) {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
+  const inputSize = `${width}%`;
 
   return (
-    <div style={{ width }} className={classes.input}>
+    <div
+      style={{ width: inputSize, minWidth: inputSize, maxWidth: inputSize }}
+      className={classes.input}
+    >
       {edit ? (
         <>
           <ReOrder16Regular className={classes.reorderIcon} />
@@ -35,7 +41,7 @@ export function Input({ width = '33%' }: InpupProps) {
           </Button>
         </>
       )}
-      <InputMenu />
+      <InputMenu onRemove={onRemove} />
     </div>
   );
 }

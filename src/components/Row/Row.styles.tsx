@@ -3,6 +3,7 @@ import { makeStyles, tokens } from '@fluentui/react-components';
 export const useStyles = makeStyles({
   row: {
     display: 'flex',
+    flexWrap: 'wrap',
     gap: tokens.spacingHorizontalM,
   },
   columnButton: {

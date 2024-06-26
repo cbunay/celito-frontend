@@ -1,17 +1,11 @@
 import { Button } from '@fluentui/react-components';
 import { Add12Regular } from '@fluentui/react-icons';
-import { Layout, Row } from '../../hooks/useLayoutForm';
-import { useStyles } from './Section.styles';
-import Input from '../Input/Input';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import InputsRow from '../Row/Row';
 
-enum size {
-  small = '33%',
-  medium = '50%',
-  large = '66%',
-  xlarge = '100%',
-}
+import { Layout } from '../../hooks/useLayoutForm';
+import InputsRow from '../Row/Row';
+import { useStyles } from './Section.styles';
+import { Size } from '../../constans/size';
 
 interface SectionProps {
   index: number;
@@ -28,22 +22,22 @@ export function Section({ index }: SectionProps) {
   const inputs = [
     {
       label: '',
-      size: size.small.toString(),
+      size: Size.small,
     },
     {
       label: '',
-      size: size.small.toString(),
+      size: Size.small,
     },
     {
       label: '',
-      size: size.small.toString(),
+      size: Size.small,
     },
   ];
 
   return (
     <div className={classes.form}>
-      {fields.map((row, index) => (
-        <InputsRow key={row.id} />
+      {fields.map((row, rowIndex) => (
+        <InputsRow key={row.id} sectionIndex={index} rowIndex={rowIndex} />
       ))}
       <Button
         className={classes.rowbutton}
