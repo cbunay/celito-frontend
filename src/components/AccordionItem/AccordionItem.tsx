@@ -27,17 +27,13 @@ const useStyles = makeStyles({
 interface CustomAccordionItemProps {
   value: string;
   children: ReactNode;
-  sectionName: string;
+  index: number;
 }
 
-const Accordion = ({
-  value,
-  children,
-  sectionName,
-}: CustomAccordionItemProps) => {
+const Accordion = ({ value, children, index }: CustomAccordionItemProps) => {
   const classes = useStyles();
   const { watch } = useFormContext();
-  const label = watch(sectionName, '');
+  const label = watch(`sections.${index}.label`, '');
 
   return (
     <CustomAccordion value={value}>

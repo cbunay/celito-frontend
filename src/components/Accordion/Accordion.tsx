@@ -10,20 +10,18 @@ export function Accordion() {
   const { getValues } = useFormContext<Layout>();
   const { sections } = getValues();
   const classes = useStyles();
+  const defaultOpen = sections.map((section) => section.id);
+
   return (
     <CustomAccordion
-      defaultOpenItems={[`accordion.0`]}
+      defaultOpenItems={defaultOpen}
       collapsible
       multiple
       className={classes.formlist}
     >
       {sections.map((section, index) => (
-        <AccordionItem
-          key={`accordion.${index}`}
-          value={`accordion.${index}`}
-          sectionName={`sections.${index}.label` as const}
-        >
-          <Section />
+        <AccordionItem key={section.id} value={section.id} index={index}>
+          <Section rows={section.rows} />
         </AccordionItem>
       ))}
     </CustomAccordion>

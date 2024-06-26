@@ -42,11 +42,11 @@ export function useLayoutForm() {
       label: '',
       viewType: '',
       sections: [
-        // {
-        //   id: '',
-        //   label: '',
-        //   rows: [],
-        // },
+        {
+          id: '',
+          label: '',
+          rows: [],
+        },
       ],
     },
   });
