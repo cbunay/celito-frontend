@@ -1,16 +1,30 @@
-import { Button, Combobox, Option } from '@fluentui/react-components';
+import { Button, Combobox, Field, Option } from '@fluentui/react-components';
 import { Add12Regular, ReOrder16Regular } from '@fluentui/react-icons';
 import { ReactNode, useState } from 'react';
 import { useStyles } from './Input.styles';
 import { Size } from '../../constans/size';
+import { Controller, useFormContext } from 'react-hook-form';
+import { Input } from '../../hooks/useLayoutForm';
 
 interface InpupProps {
   width: number;
   children: ReactNode;
+  input: Input;
+  name: string;
 }
 
-export function Input({ width = Size.small, children }: InpupProps) {
+export function RowInput({
+  width = Size.small,
+  children,
+  input,
+  name,
+}: InpupProps) {
   const classes = useStyles();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
   const [edit, setEdit] = useState(false);
   const inputSize = `${width}%`;
 
@@ -21,18 +35,38 @@ export function Input({ width = Size.small, children }: InpupProps) {
         minWidth: inputSize,
         maxWidth: inputSize,
         paddingInline: '5px',
-        display: 'inline-block',
       }}
     >
       <div className={classes.input}>
         {edit ? (
           <>
             <ReOrder16Regular className={classes.reorderIcon} />
-            <Combobox className={classes.dropdown} expandIcon={null}>
-              <Option>Reds</Option>
-              <Option>Green</Option>
-              <Option>Blue</Option>
-            </Combobox>
+            <Field
+              required
+              // validationState={errors.viewType && 'error'}
+              // validationMessage={errors.viewType?.message}
+              // className={classes.field}
+            >
+              <Controller
+                name={`${name}.label` as const}
+                control={control}
+                defaultValue={''}
+                render={({ field: { onChange, value } }) => (
+                  <Combobox
+                    expandIcon={null}
+                    value={value}
+                    className={classes.dropdown}
+                    onOptionSelect={(_, data) => {
+                      onChange(data.optionText);
+                    }}
+                  >
+                    <Option>Reds</Option>
+                    <Option>Green</Option>
+                    <Option>Blue</Option>
+                  </Combobox>
+                )}
+              />
+            </Field>
           </>
         ) : (
           <>
@@ -52,4 +86,4 @@ export function Input({ width = Size.small, children }: InpupProps) {
   );
 }
 
-export default Input;
+export default RowInput;

@@ -16,12 +16,11 @@ import {
   MoreHorizontal16Filled,
 } from '@fluentui/react-icons';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { useState } from 'react';
 
-import { Input, Layout } from '../../hooks/useLayoutForm';
 import { Size } from '../../constans/size';
-import { useStyles } from './Row.styles';
+import { Input, Layout } from '../../hooks/useLayoutForm';
 import InputRow from '../Input/Input';
+import { useStyles } from './Row.styles';
 
 interface Row {
   sectionIndex: number;
@@ -55,106 +54,126 @@ export function Row({ sectionIndex, rowIndex }: Row) {
       });
   };
 
-  console.log(inputs);
   return (
     <div className={classes.row}>
-      {inputs.map((input, index) => (
-        <InputRow key={input.id} width={input.size}>
-          <Menu hasIcons>
-            <MenuTrigger disableButtonEnhancement>
-              <MoreHorizontal16Filled />
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList>
-                <MenuItem
-                  icon={<Flowchart20Regular className={classes.icon} />}
-                  disabled
-                >
-                  Set Layout Rules
-                </MenuItem>
-                <Menu>
-                  <MenuTrigger disableButtonEnhancement>
-                    <MenuItem
-                      icon={
-                        <AlignSpaceEvenlyHorizontalRegular
-                          className={classes.icon}
-                        />
-                      }
-                    >
-                      Field Width
-                    </MenuItem>
-                  </MenuTrigger>
-                  <MenuPopover>
-                    <MenuList>
+      {inputs.map((input, index) => {
+        const usedSpace = totalSpace - input.size;
+
+        return (
+          <InputRow
+            key={input.id}
+            width={input.size}
+            input={input}
+            name={`sections.${sectionIndex}.rows.${rowIndex}.inputs.${index}`}
+          >
+            <Menu hasIcons>
+              <MenuTrigger disableButtonEnhancement>
+                <MoreHorizontal16Filled />
+              </MenuTrigger>
+              <MenuPopover>
+                <MenuList>
+                  <MenuItem
+                    icon={<Flowchart20Regular className={classes.icon} />}
+                    disabled
+                  >
+                    Set Layout Rules
+                  </MenuItem>
+                  <Menu>
+                    <MenuTrigger disableButtonEnhancement>
                       <MenuItem
-                        onClick={() =>
-                          handleSizeChange(index, Size.small, input)
+                        icon={
+                          <AlignSpaceEvenlyHorizontalRegular
+                            className={classes.icon}
+                          />
                         }
                       >
-                        <div className={classes.subMenuItem}>
-                          <span>Small</span>
-                          {input.size === Size.small && (
-                            <CheckmarkFilled className={classes.checkmarIcon} />
-                          )}
-                        </div>
+                        Field Width
                       </MenuItem>
-                      <MenuItem
-                        onClick={() =>
-                          handleSizeChange(index, Size.medium, input)
-                        }
-                      >
-                        <div className={classes.subMenuItem}>
-                          Medium
-                          {input.size === Size.medium && (
-                            <CheckmarkFilled className={classes.checkmarIcon} />
-                          )}
-                        </div>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() =>
-                          handleSizeChange(index, Size.large, input)
-                        }
-                      >
-                        <div className={classes.subMenuItem}>
-                          Large
-                          {input.size === Size.large && (
-                            <CheckmarkFilled className={classes.checkmarIcon} />
-                          )}
-                        </div>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() =>
-                          handleSizeChange(index, Size.xlarge, input)
-                        }
-                      >
-                        <div className={classes.subMenuItem}>
-                          Extra Large
-                          {input.size === Size.xlarge && (
-                            <CheckmarkFilled className={classes.checkmarIcon} />
-                          )}
-                        </div>
-                      </MenuItem>
-                    </MenuList>
-                  </MenuPopover>
-                </Menu>
-                <MenuItem
-                  icon={<DataUsageEditRegular className={classes.icon} />}
-                >
-                  Edit Field
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    remove(index);
-                  }}
-                  icon={<DeleteRegular className={classes.deleteIcon} />}
-                >
-                  Delete
-                </MenuItem>
-              </MenuList>
-            </MenuPopover>
-          </Menu>
-        </InputRow>
-      ))}
+                    </MenuTrigger>
+                    <MenuPopover>
+                      <MenuList>
+                        <MenuItem
+                          disabled={usedSpace + Size.small >= Size.xlarge}
+                          onClick={() =>
+                            handleSizeChange(index, Size.small, input)
+                          }
+                        >
+                          <div className={classes.subMenuItem}>
+                            <span>Small</span>
+                            {input.size === Size.small && (
+                              <CheckmarkFilled
+                                className={classes.checkmarIcon}
+                              />
+                            )}
+                          </div>
+                        </MenuItem>
+                        <MenuItem
+                          disabled={usedSpace + Size.medium >= Size.xlarge}
+                          onClick={() =>
+                            handleSizeChange(index, Size.medium, input)
+                          }
+                        >
+                          <div className={classes.subMenuItem}>
+                            Medium
+                            {input.size === Size.medium && (
+                              <CheckmarkFilled
+                                className={classes.checkmarIcon}
+                              />
+                            )}
+                          </div>
+                        </MenuItem>
+                        <MenuItem
+                          disabled={usedSpace + Size.large >= Size.xlarge}
+                          onClick={() =>
+                            handleSizeChange(index, Size.large, input)
+                          }
+                        >
+                          <div className={classes.subMenuItem}>
+                            Large
+                            {input.size === Size.large && (
+                              <CheckmarkFilled
+                                className={classes.checkmarIcon}
+                              />
+                            )}
+                          </div>
+                        </MenuItem>
+                        <MenuItem
+                          disabled={usedSpace + Size.xlarge > Size.xlarge}
+                          onClick={() =>
+                            handleSizeChange(index, Size.xlarge, input)
+                          }
+                        >
+                          <div className={classes.subMenuItem}>
+                            Extra Large
+                            {input.size === Size.xlarge && (
+                              <CheckmarkFilled
+                                className={classes.checkmarIcon}
+                              />
+                            )}
+                          </div>
+                        </MenuItem>
+                      </MenuList>
+                    </MenuPopover>
+                  </Menu>
+                  <MenuItem
+                    icon={<DataUsageEditRegular className={classes.icon} />}
+                  >
+                    Edit Field
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      remove(index);
+                    }}
+                    icon={<DeleteRegular className={classes.deleteIcon} />}
+                  >
+                    Delete
+                  </MenuItem>
+                </MenuList>
+              </MenuPopover>
+            </Menu>
+          </InputRow>
+        );
+      })}
       {isSpaceAvailable && (
         <Button className={classes.columnButton} icon={<Add12Regular />}>
           Add Column

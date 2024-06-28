@@ -73,9 +73,9 @@ export function Design() {
                     onChange(data.optionText);
                   }}
                 >
-                  <Option checkIcon={null}>Create</Option>
-                  <Option checkIcon={null}>Edit</Option>
-                  <Option checkIcon={null}>View</Option>
+                  <Option>Create</Option>
+                  <Option>Edit</Option>
+                  <Option>View</Option>
                 </Combobox>
               )}
             />

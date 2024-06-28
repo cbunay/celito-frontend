@@ -65,7 +65,6 @@ export function useLayoutForm() {
     console.log(data);
     dispatch(updateLabel(data.label));
     dispatch(updateViewType(data.viewType));
-    // dispatch(updateSections(data.sections));
   };
 
   return {

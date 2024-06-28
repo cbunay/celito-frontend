@@ -27,5 +27,8 @@ export const useStyles = makeStyles({
     '> :only-child': {
       gridColumn: 'span 2',
     },
+    '@media (width < 925px)': {
+      gridTemplateColumns: '1fr',
+    },
   },
 });

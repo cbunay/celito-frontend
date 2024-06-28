@@ -2,7 +2,7 @@ import { makeStyles, tokens } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
   row: {
-    display: 'block',
+    display: 'flex',
     flexWrap: 'wrap',
   },
   columnButton: {

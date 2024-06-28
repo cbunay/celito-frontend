@@ -5,6 +5,10 @@ export const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacingVerticalM,
+    '@media (width < 925px)': {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
   },
   button: {
     justifyContent: 'left',

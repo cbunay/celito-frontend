@@ -17,5 +17,8 @@ export const useStyles = makeStyles({
   icon: {
     color: tokens.colorNeutralForegroundInverted,
     height: '.85rem',
+    ':hover': {
+      color: tokens.colorStatusDangerBackground3,
+    },
   },
 });
