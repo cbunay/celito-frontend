@@ -6,7 +6,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 export function SectionList() {
   const classes = useStyles();
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -15,13 +15,16 @@ export function SectionList() {
 
   return (
     <div className={classes.sectionsContainer}>
-      {fields.map((section, index) => (
-        <SectionInput
-          key={section.id}
-          onDelete={() => remove(index)}
-          index={index}
-        />
-      ))}
+      {fields.map((section, index) => {
+        setValue(`sections.${index}.id`, `section.${index}`);
+        return (
+          <SectionInput
+            key={section.id}
+            onDelete={() => remove(index)}
+            index={index}
+          />
+        );
+      })}
       <Button
         className={classes.button}
         icon={<Add12Regular />}
