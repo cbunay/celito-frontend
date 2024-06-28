@@ -8,6 +8,7 @@ export const useStyles = makeStyles({
   },
   designRow: {
     display: 'grid',
+    alignItems: 'start',
     gridTemplateColumns: '1fr 1fr',
     gap: tokens.spacingHorizontalS,
     '@media (width < 601px)': {

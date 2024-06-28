@@ -15,6 +15,7 @@ export const useStyles = makeStyles({
     color: tokens.colorBrandForeground2,
     alignItems: 'center',
     ':hover': {
+      color: tokens.colorBrandForeground2,
       outline: `1px solid ${tokens.colorBrandBackground}`,
     },
   },
@@ -54,5 +55,17 @@ export const useStyles = makeStyles({
   },
   reorderIcon: {
     transform: 'rotate(90deg)',
+  },
+  container: {
+    display: 'grid',
+    alignItems: 'center',
+    width: '100%',
+    color: tokens.colorBrandForeground2,
+    borderRadius: tokens.borderRadiusLarge,
+    gridTemplateColumns: 'auto 1fr auto',
+    backgroundColor: tokens.colorNeutralBackground2,
+    ':hover': {
+      outline: `1px solid ${tokens.colorBrandBackground}`,
+    },
   },
 });

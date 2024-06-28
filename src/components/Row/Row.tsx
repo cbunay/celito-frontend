@@ -19,7 +19,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { Size } from '../../constans/size';
 import { Input, Layout } from '../../hooks/useLayoutForm';
-import InputRow from '../Input/Input';
+import CustomInput from '../Input/CustomInput';
 import { useStyles } from './Row.styles';
 
 interface Row {
@@ -55,13 +55,25 @@ export function Row({ sectionIndex, rowIndex }: Row) {
       });
   };
 
+  let letTotal = 0;
+  let inputTotal = inputs.reduce((total, input) => {
+    letTotal = letTotal + input.size;
+    return `${total} ${input.size}%`;
+  }, '');
+
+  if (letTotal < 80) {
+    inputTotal += `auto`;
+  }
+
   return (
-    <div className={classes.row}>
+    <div
+      style={{ display: 'grid', gridTemplateColumns: inputTotal, gap: '20px' }}
+    >
       {inputs.map((input, index) => {
         const usedSpace = totalSpace - input.size;
 
         return (
-          <InputRow
+          <CustomInput
             key={input.id}
             width={input.size}
             name={`sections.${sectionIndex}.rows.${rowIndex}.inputs.${index}.label`}
@@ -172,19 +184,21 @@ export function Row({ sectionIndex, rowIndex }: Row) {
                 </MenuList>
               </MenuPopover>
             </Menu>
-          </InputRow>
+          </CustomInput>
         );
       })}
       {isSpaceAvailable && (
-        <Button
-          className={classes.columnButton}
-          icon={<Add12Regular />}
-          onClick={(first) => {
-            append({ label: '', size: Size.small });
-          }}
-        >
-          Add Column
-        </Button>
+        <div>
+          <Button
+            className={classes.columnButton}
+            icon={<Add12Regular />}
+            onClick={(first) => {
+              append({ label: '', size: Size.small });
+            }}
+          >
+            Add Column
+          </Button>
+        </div>
       )}
     </div>
   );

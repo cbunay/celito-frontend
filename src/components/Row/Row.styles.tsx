@@ -2,8 +2,8 @@ import { makeStyles, tokens } from '@fluentui/react-components';
 
 export const useStyles = makeStyles({
   row: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    // display: 'flex',
+    // flexWrap: 'wrap',
   },
   columnButton: {
     minHeight: '1.9rem',

@@ -1,13 +1,12 @@
 import {
   AccordionHeader,
-  AccordionItem as CustomAccordion,
   AccordionPanel,
+  AccordionItem as CustomAccordion,
   makeStyles,
   tokens,
 } from '@fluentui/react-components';
 import { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Layout } from '../../hooks/useLayoutForm';
 
 const useStyles = makeStyles({
   accordionHeader: {
@@ -17,6 +16,12 @@ const useStyles = makeStyles({
       borderRadius: tokens.borderRadiusXLarge,
       fontWeight: tokens.fontWeightBold,
     },
+  },
+  accordionPanel: {
+    margin: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: tokens.spacingVerticalL,
   },
   dimmedText: {
     fontWeight: tokens.fontWeightRegular,
@@ -51,7 +56,9 @@ const AccordionItem = ({
           label
         )}
       </AccordionHeader>
-      <AccordionPanel>{children}</AccordionPanel>
+      <AccordionPanel className={classes.accordionPanel}>
+        {children}
+      </AccordionPanel>
     </CustomAccordion>
   );
 };
