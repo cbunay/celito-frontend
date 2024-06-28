@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Checkbox,
   Combobox,
@@ -6,31 +5,24 @@ import {
   Input,
   Option,
 } from '@fluentui/react-components';
-import { SearchRegular } from '@fluentui/react-icons';
-import { Controller, FormProvider } from 'react-hook-form';
+import { useState } from 'react';
+import { FormProvider } from 'react-hook-form';
 
-import { useAppSelector } from '../../app/hooks';
-import Accordion from '../../components/Accordion/Accordion';
 import SectionList from '../../components/SectionList/SectionList';
-import { Layout, useLayoutForm } from '../../hooks/useLayoutForm';
-import { selectLayout } from '../../slices/layout.selectors';
+import { useLayoutForm } from '../../hooks/useLayoutForm';
 import { useStyles } from './Design.styles';
 
 export function Design() {
   const classes = useStyles();
-  const layout = useAppSelector(selectLayout);
-  const { control, errors, methods, append, remove, fields } = useLayoutForm();
+  const { errors, methods, submit, register } = useLayoutForm();
   const [checked, setChecked] = useState(true);
-  const { label, viewType } = layout;
-
-  const onSubmit = (data: Layout) => console.log(data);
 
   return (
     <FormProvider {...methods}>
       <form
         id="form-layout"
         noValidate
-        onSubmit={methods.handleSubmit(onSubmit)}
+        onSubmit={submit}
         className={classes.container}
       >
         <div className={classes.designRow}>
@@ -41,19 +33,7 @@ export function Design() {
             validationMessage={errors.label?.message}
             className={classes.field}
           >
-            <Controller
-              name="label"
-              defaultValue={label}
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Input
-                  value={value}
-                  onChange={(_, data) => {
-                    onChange(data.value);
-                  }}
-                />
-              )}
-            />
+            <Input {...register('label')} />
           </Field>
           <Field
             label="View Type"
@@ -61,24 +41,11 @@ export function Design() {
             validationMessage={errors.viewType?.message}
             className={classes.field}
           >
-            <Controller
-              name="viewType"
-              defaultValue={viewType}
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Combobox
-                  expandIcon={<SearchRegular />}
-                  value={value}
-                  onOptionSelect={(_, data) => {
-                    onChange(data.optionText);
-                  }}
-                >
-                  <Option>Create</Option>
-                  <Option>Edit</Option>
-                  <Option>View</Option>
-                </Combobox>
-              )}
-            />
+            <Combobox {...register('viewType')}>
+              <Option>Create</Option>
+              <Option>Edit</Option>
+              <Option>View</Option>
+            </Combobox>
           </Field>
         </div>
         <Checkbox
@@ -87,10 +54,7 @@ export function Design() {
           label="Show Sections"
         />
         <div className={classes.sectionsLayout}>
-          {checked && (
-            <SectionList fields={fields} append={append} remove={remove} />
-          )}
-          <Accordion />
+          {checked && <SectionList />}
         </div>
       </form>
     </FormProvider>

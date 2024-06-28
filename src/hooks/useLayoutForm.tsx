@@ -1,9 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { useAppDispatch } from '../app/hooks';
-import { updateLabel, updateViewType } from '../slices/layout.slice';
 
 const inputSchema = yup.object({
   label: yup.string().required('Input is required'),
@@ -32,8 +29,6 @@ export type Row = yup.InferType<typeof rowSchema>;
 export type Input = yup.InferType<typeof inputSchema>;
 
 export function useLayoutForm() {
-  const dispatch = useAppDispatch();
-
   const methods = useForm<Layout>({
     resolver: yupResolver(layoutSchema),
     defaultValues: {
@@ -56,24 +51,14 @@ export function useLayoutForm() {
     formState: { errors },
   } = methods;
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'sections',
-  });
-
   const onSubmit = (data: Layout) => {
     console.log(data);
-    dispatch(updateLabel(data.label));
-    dispatch(updateViewType(data.viewType));
   };
 
   return {
     methods,
     control,
     register,
-    fields,
-    append,
-    remove,
     errors,
     submit: handleSubmit(onSubmit),
   };
