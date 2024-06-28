@@ -13,7 +13,7 @@ interface SectionProps {
 
 export function Section({ index }: SectionProps) {
   const classes = useStyles();
-  const { control } = useFormContext<Layout>();
+  const { control, setValue } = useFormContext<Layout>();
   const { fields, append } = useFieldArray({
     control,
     name: `sections.${index}.rows`,
@@ -36,9 +36,12 @@ export function Section({ index }: SectionProps) {
 
   return (
     <div className={classes.form}>
-      {fields.map((row, rowIndex) => (
-        <InputsRow key={row.id} sectionIndex={index} rowIndex={rowIndex} />
-      ))}
+      {fields.map((row, rowIndex) => {
+        setValue(`sections.${index}.rows.${rowIndex}.id`, `row.${rowIndex}`);
+        return (
+          <InputsRow key={row.id} rowIndex={rowIndex} sectionIndex={index} />
+        );
+      })}
       <Button
         className={classes.rowbutton}
         icon={<Add12Regular />}

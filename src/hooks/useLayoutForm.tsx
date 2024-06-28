@@ -4,10 +4,11 @@ import * as yup from 'yup';
 
 const inputSchema = yup.object({
   label: yup.string().required('Input is required'),
-  size: yup.number().required(),
+  size: yup.number().default(30),
 });
 
 const rowSchema = yup.object({
+  id: yup.string(),
   inputs: yup.array().of(inputSchema).default([]),
 });
 

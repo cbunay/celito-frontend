@@ -11,12 +11,14 @@ import { FormProvider } from 'react-hook-form';
 import SectionList from '../../components/SectionList/SectionList';
 import { useLayoutForm } from '../../hooks/useLayoutForm';
 import { useStyles } from './Design.styles';
+import Accordion from '../../components/Accordion/Accordion';
 
 export function Design() {
   const classes = useStyles();
   const { errors, methods, submit, register } = useLayoutForm();
   const [checked, setChecked] = useState(true);
 
+  console.log(errors);
   return (
     <FormProvider {...methods}>
       <form
@@ -55,6 +57,7 @@ export function Design() {
         />
         <div className={classes.sectionsLayout}>
           {checked && <SectionList />}
+          <Accordion />
         </div>
       </form>
     </FormProvider>

@@ -30,7 +30,11 @@ interface CustomAccordionItemProps {
   index: number;
 }
 
-const Accordion = ({ value, children, index }: CustomAccordionItemProps) => {
+const AccordionItem = ({
+  value,
+  children,
+  index,
+}: CustomAccordionItemProps) => {
   const classes = useStyles();
   const { watch } = useFormContext();
   const label = watch(`sections.${index}.label`, '');
@@ -52,4 +56,4 @@ const Accordion = ({ value, children, index }: CustomAccordionItemProps) => {
   );
 };
 
-export default Accordion;
+export default AccordionItem;

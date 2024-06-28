@@ -35,6 +35,7 @@ export function Row({ sectionIndex, rowIndex }: Row) {
     fields: inputs,
     remove,
     update,
+    append,
   } = useFieldArray({
     control,
     name: `sections.${sectionIndex}.rows.${rowIndex}.inputs`,
@@ -63,8 +64,8 @@ export function Row({ sectionIndex, rowIndex }: Row) {
           <InputRow
             key={input.id}
             width={input.size}
-            input={input}
-            name={`sections.${sectionIndex}.rows.${rowIndex}.inputs.${index}`}
+            name={`sections.${sectionIndex}.rows.${rowIndex}.inputs.${index}.label`}
+            indexes={[sectionIndex, rowIndex, index]}
           >
             <Menu hasIcons>
               <MenuTrigger disableButtonEnhancement>
@@ -175,7 +176,13 @@ export function Row({ sectionIndex, rowIndex }: Row) {
         );
       })}
       {isSpaceAvailable && (
-        <Button className={classes.columnButton} icon={<Add12Regular />}>
+        <Button
+          className={classes.columnButton}
+          icon={<Add12Regular />}
+          onClick={(first) => {
+            append({ label: '', size: Size.small });
+          }}
+        >
           Add Column
         </Button>
       )}

@@ -1,9 +1,8 @@
 import { Field, Input } from '@fluentui/react-components';
 import { Delete16Regular } from '@fluentui/react-icons';
-import { useEffect } from 'react';
-import { FieldError, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { Layout } from '../../hooks/useLayoutForm';
 import { useStyles } from './SectionInput.Styles';
-import { Section, Layout } from '../../hooks/useLayoutForm';
 
 interface SectionInputProps {
   index: number;
@@ -18,13 +17,13 @@ export function SectionInput({ index, onDelete }: SectionInputProps) {
     formState: { errors },
   } = useFormContext<Layout>();
 
-  const fieldError = errors.sections?.[index]?.label;
+  const sectionError = errors.sections?.[index]?.label;
 
   return (
     <Field
       required
-      validationState={fieldError && 'error'}
-      validationMessage={fieldError?.message}
+      validationState={sectionError && 'error'}
+      validationMessage={sectionError?.message}
     >
       <Input
         className={classes.input}
